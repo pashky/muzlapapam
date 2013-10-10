@@ -36,8 +36,6 @@ playlists.each do |playlist_name|
   playlist_files = []
   tracks.each_with_index do |track, i_track|
     id = track.database_ID.get
-    next if processed_tracks.include?(id)
-    processed_tracks.add(id)
     
     album_artist = track.album_artist.get
     album_artist = track.artist.get if album_artist.empty?
@@ -61,6 +59,9 @@ playlists.each do |playlist_name|
     percent = i_track * 100 / total_tracks;
     puts "[#{percent}%] #{filepath}"
 
+    next if processed_tracks.include?(id)
+    processed_tracks.add(id)
+    
     unless processed_artworks.include?(albumpath) then
       processed_artworks.add(albumpath)
       
