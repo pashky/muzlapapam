@@ -7,7 +7,8 @@ require 'set'
 include Magick
 
 export_dir = '/Volumes/SANSA64/Library'
-playlist_dir = '/Volumes/SANSACLIPZ/Playlists'
+#playlist_dir = '/Volumes/SANSACLIPZ/Playlists'
+playlist_dir = '/Volumes/SANSA64/Playlists'
 playlist_prefix = '/<microSD1>/Library'
 
 playlists = ['shuffle','export']
@@ -86,6 +87,7 @@ playlists.each do |playlist_name|
   end
 
   playlistpath = File.join(playlist_dir, safename(playlist_name) + ".m3u8")
+  FileUtils.mkpath(playlist_dir)
   File.open(playlistpath, "w") { |f| f.puts playlist_files.map{|n| File.join(playlist_prefix, n)} }
 end
 
