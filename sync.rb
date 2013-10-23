@@ -11,7 +11,12 @@ export_dir = '/Volumes/SANSA64/Library'
 playlist_dir = '/Volumes/SANSA64/Playlists'
 playlist_prefix = '/<microSD1>/Library'
 
-playlists = ['shuffle','export']
+unless ARGV.size > 0
+  puts "sync.rb [playlist name] [playlist name]..."
+  exit
+end
+
+playlists = ARGV
 
 #### no config beyond this point
 
